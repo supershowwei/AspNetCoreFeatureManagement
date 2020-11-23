@@ -21,21 +21,22 @@ namespace AspNetCoreFeatureManagement
                 .ConfigureWebHostDefaults(
                     webBuilder =>
                         {
-                            webBuilder.ConfigureAppConfiguration(
-                                    config =>
-                                        {
-                                            var settings = config.Build();
+                            webBuilder
+                                //.ConfigureAppConfiguration(
+                                //    config =>
+                                //        {
+                                //            var settings = config.Build();
 
-                                            config.AddAzureAppConfiguration(
-                                                options =>
-                                                    {
-                                                        options.Connect(settings["ConnectionStrings:AppConfig"]).UseFeatureFlags(
-                                                            featureFlagOptions =>
-                                                                {
-                                                                    featureFlagOptions.CacheExpirationInterval = TimeSpan.FromMinutes(5);
-                                                                });
-                                                    });
-                                        })
+                                //            config.AddAzureAppConfiguration(
+                                //                options =>
+                                //                    {
+                                //                        options.Connect(settings["ConnectionStrings:AppConfig"]).UseFeatureFlags(
+                                //                            featureFlagOptions =>
+                                //                                {
+                                //                                    featureFlagOptions.CacheExpirationInterval = TimeSpan.FromMinutes(5);
+                                //                                });
+                                //                    });
+                                //        })
                                 .UseStartup<Startup>();
                         });
     }

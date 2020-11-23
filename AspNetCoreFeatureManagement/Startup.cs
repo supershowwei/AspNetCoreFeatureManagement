@@ -37,9 +37,12 @@ namespace AspNetCoreFeatureManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAzureAppConfiguration();
+            services.AddHttpClient();
+            services.AddMemoryCache();
 
-            services.AddFeatureManagement().AddFeatureFilter<PercentageFilter>();
+            services.AddSingleton<IFeatureDefinitionProvider, CustomFeatureProvider>()
+                .AddFeatureManagement()
+                .AddFeatureFilter<TimeWindowFilter>();
 
             services.AddControllersWithViews();
         }
@@ -58,7 +61,7 @@ namespace AspNetCoreFeatureManagement
 
             app.UseStaticFiles();
 
-            app.UseAzureAppConfiguration();
+            //app.UseAzureAppConfiguration();
 
             app.UseRouting();
 

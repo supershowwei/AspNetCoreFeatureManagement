@@ -59,5 +59,11 @@ namespace AspNetCoreFeatureManagement.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet("/feature-management-settings")]
+        public IActionResult FeatureManagementSettings()
+        {
+            return this.File(System.IO.File.OpenRead(@"E:\my-settings.json"), "application/json");
+        }
     }
 }
